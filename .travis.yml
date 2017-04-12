@@ -22,3 +22,9 @@ after_success:
 - JAVAC_VERSION=$((javac -version) 2>&1)
 # Only run jacocoRootReport in the Java7 build
 - if [[ "$JAVAC_VERSION" = javac\ 1.7.* ]]; then gradle jacocoRootReport coveralls; fi
+deploy:
+  provider: releases
+  user: "xfan1015@gmail.com"
+  password: "ivan9918"
+  file: Smack/smack-legacy/build/libs/smack-legacy-4.1.8.jar
+  skip_cleanup: true
