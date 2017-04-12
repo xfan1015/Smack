@@ -278,8 +278,8 @@ subprojects {
 		}
 	}
 	signing {
-		required { signingRequired }
-		sign configurations.archives
+		//required { signingRequired }
+		//sign configurations.archives
 	}
 
 	clirr {
