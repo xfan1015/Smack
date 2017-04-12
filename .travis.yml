@@ -24,6 +24,7 @@ after_success:
 - if [[ "$JAVAC_VERSION" = javac\ 1.7.* ]]; then gradle jacocoRootReport coveralls; fi
 deploy:
   provider: releases
-  api_key: 11e3b5842e0b85243199e2072802c05680585bd0
-  file: /home/travis/build/xfan1015/Smack/smack-legacy/build/libs/smack-legacy-4.1.8.jar
+  user: xfan1015
+  password: ivan9918
+  file: /home/travis/build/xfan1015/Smack/smack-legacy/build/libs/smack-legacy-4.1.9.jar
   skip_cleanup: true
