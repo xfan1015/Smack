@@ -1,7 +1,31 @@
-language: android
-android:
-  components:
-    - android-8
-install: gradle assemble
-script: gradle check
+{
+  "language": "android",
+  "android": {
+    "components": [
+      "android-8"
+    ]
+  },
+  "jdk": "oraclejdk8",
+  "sudo": false,
+  "cache": {
+    "directories": [
+      "$HOME/.m2"
+    ]
+  },
+  "before_install": [
+    "export GRADLE_VERSION=2.12",
+    "wget https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-all.zip",
+    "unzip -q gradle-${GRADLE_VERSION}-all.zip",
+    "export PATH=\"$(pwd)/gradle-${GRADLE_VERSION}/bin:$PATH\""
+  ],
+  "install": "gradle assemble --stacktrace",
+  "script": "gradle check --stacktrace",
+  "after_success": [
+    "JAVAC_VERSION=$((javac -version) 2>&1)",
+    "if [[ \"$JAVAC_VERSION\" = javac\\ 1.7.* ]]; then gradle jacocoRootReport coveralls; fi"
+  ],
+  "group": "stable",
+  "dist": "precise",
+  "os": "linux"
+}
 
